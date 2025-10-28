@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kaja's tutoring sessions</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        .topnav-title {
+            width: 100vw;
+            box-sizing: border-box;
+            display: block;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            background-color: #43aef5;
+            margin: 0;
+            padding: 20px 0 10px 0;
+            user-select: none;
+            border-radius: 0;
+        }
+        .topnav {
+            width: 100vw;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #43aef5;
+            padding: 0 32px;
+            position: relative;
+            border-top: none;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 2px 8px rgba(67, 174, 245, 0.08);
+        }
+        .topnav-links {
+            justify-content: flex-end;
+        }
+        .topnav a {
+            color: #155f91;
+            background: #eaf6fd;
+            border-radius: 20px;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 8px 0;
+            transition:
+            background 0.2s,
+            color 0.2,
+            box-shadow 0.2s;
+            box-shadow: 0 1px 4px rgba(67, 174, 245, 0.08);
+            border: none;
+            outline: none;
+            font-weight: 500;
+        }
+        .topnav a.hover {
+            background-color: #b3e0fc;
+            color: #053352;
+            box-shadow: 0 2px 8px rgba(67, 174, 245, 0.15);
+        }
+        .topnav a.active {
+            background-color:  #1e94e4;
+            color: white;
+            box-shadow: 0 2px 8px rgba(30, 148, 228, 0.18);
+        }
+        @media (max-width: 600px) {
+            .topnav, .topnav-title{
+                font-size: 1.2rem;
+                padding: 10px 4px;
+            }
+            .topnav a {
+                padding:  8px 10px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <span class="topnav-title">Kaja's tutoring sessions</span>
+    <div class="topnav">
+        <div class="topnav-links">
+            <a href="home_page.html">Home</a>
+            <a href="prevous_consumers.html">prevous comsumers</a>
+        </div>
+        <div class="topnav-links right">
+            <a href="contact.html">contact</a>
+            <a class="active" href="about.html">about</a>
+        </div>
+    </div>
+</body>
+</html>
