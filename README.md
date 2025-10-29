@@ -7,11 +7,9 @@
   
 </div>
 
-<<<<<<< HEAD
-=======
 <div align="center">
   <a href="https://hackatime-badge.hackclub.com/U08PW2KTEM7/website-for-my-sister" target="_blank">
     <img src="https://hackatime-badge.hackclub.com/U08PW2KTEM7/website-for-my-sister" alt="HackaTime badge" />
   </a>
 </div>
->>>>>>> 564cfc9 (added th hackatime badge correctly)
+
