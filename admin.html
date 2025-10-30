@@ -84,11 +84,37 @@
                 font-size: 15px;
             }
         }
-                .bold {
+        .bold {
             font-weight: bold;
         }
         .underline {
             text-decoration: underline;
+        }
+        .box-password {
+            width: 50vw; 
+            height: auto; 
+            color: white;
+            background-color: #5ab2ed;
+            border: 8px solid #155f91; 
+            padding: 20px; 
+            margin: 20px auto; 
+            text-align: center; 
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
+            border-radius: 20px;
+            font-size: 25px;
+        }
+        .protected-frame {
+            width: 50vw; 
+            height: auto; 
+            color: white;
+            background-color: #5ab2ed;
+            border: 8px solid #155f91; 
+            padding: 20px; 
+            margin: 20px auto; 
+            text-align: center; 
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
+            border-radius: 20px;
+            font-size: 25px;
         }
     </style>
 </head>
@@ -104,5 +130,59 @@
             <a class="active" href="admin.html">admin</a>
         </div>
     </div>
+
+    <div class="box-password" id="admin-pass-box">
+        <div style="display:flex;justify-content:center;align-items:center;gap:8px;">
+            <input id="admin-pass-input" type="password" placeholder="Passcode" style="font-size:16px;padding:8px;border-radius:6px;border:1px solid rgba(0,0,0,0.12)" />
+            <button id="admin-pass-submit" type="button" style="font-size:16px;padding:8px 12px;border-radius:6px;background:#155f91;color:#fff;border:none;cursor:pointer">Submit</button>
+            <span id="admin-pass-msg" style="color:white;font-size:16px;margin-left:8px"></span>
+        </div>
+    </div>
+
+    <div id="admin-protected" class="protected-frame" style="display:none;width:50vw;max-width:720px;margin:0 auto;padding:20px;text-align:left;color:white">
+        <div class="box" id="protected-box-content">
+            <h2 style="margin:0 0 8px 0">Protected area</h2>
+            <p style="margin:0 0 8px 0">Edit this content directly in admin.html. Replace or extend as needed.</p>
+        </div>
+    </div>
+
+    <script>
+(function(){
+const PASSWORD = "yourpassword";
+const input = document.getElementById('admin-pass-input');
+const btn = document.getElementById('admin-pass-submit');
+const msg = document.getElementById('admin-pass-msg');
+const protectedArea = document.getElementById('admin-protected');
+const passBox = document.getElementById('admin-pass-box');
+
+function unlock(){
+  if (input.value === PASSWORD) {
+    passBox.style.display = 'none';
+    protectedArea.style.display = '';
+    msg.textContent = '';
+  } else {
+    msg.textContent = 'Incorrect';
+    input.value = '';
+    input.focus();
+  }
+}
+
+btn.addEventListener('click', unlock);
+input.addEventListener('keydown', function(e){ if (e.key === 'Enter') unlock(); });
+input.focus();
+
+window.setProtectedContent = function(html){
+  protectedArea.innerHTML = html;
+};
+
+window.showProtectedArea = function(){
+  protectedArea.style.display = '';
+};
+
+window.hideProtectedArea = function(){
+  protectedArea.style.display = 'none';
+};
+})();
+    </script>
 </body>
 </html>
