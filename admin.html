@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eng">
 <head>
     <meta charset="UTF-8">
     <title>Kaja's tutoring sessions</title>
@@ -16,7 +16,7 @@
             text-align: center;
             font-size: 2.5rem;
             font-weight: bold;
-            color: white;
+            color: #ffffff;
             background-color: #43aef5;
             margin: 0;
             padding: 20px 0 10px 0;
@@ -30,13 +30,19 @@
             align-items: center;
             justify-content: space-between;
             background-color: #43aef5;
-            padding: 0 32px;
+            padding:  0 32px;
             position: relative;
             border-top: none;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 2px 8px rgba(67, 174, 245, 0.08);
         }
-        .topnav-links {
+        .topnav-link {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            justify-content: flex-start;
+        }
+        .topnav-links.right {
             justify-content: flex-end;
         }
         .topnav a {
@@ -48,32 +54,32 @@
             text-decoration: none;
             font-size: 17px;
             margin: 8px 0;
-            transition:
-            background 0.2s,
-            color 0.2,
-            box-shadow 0.2s;
+            transition: 
+                background 0.2s,
+                color 0.2s,
+                box-shadow 0.2s;
             box-shadow: 0 1px 4px rgba(67, 174, 245, 0.08);
             border: none;
             outline: none;
             font-weight: 500;
         }
-        .topnav a.hover {
+        .topnav a:hover {
             background-color: #b3e0fc;
             color: #053352;
             box-shadow: 0 2px 8px rgba(67, 174, 245, 0.15);
         }
         .topnav a.active {
-            background-color:  #1e94e4;
+            background-color: #1e94e4;
             color: white;
-            box-shadow: 0 2px 8px rgba(30, 148, 228, 0.18);
+            box-shadow: 0 2px rgba(30, 148, 228, 0.18);
         }
         @media (max-width: 600px) {
-            .topnav, .topnav-title{
+            .topnav, .topnav-title {
                 font-size: 1.2rem;
                 padding: 10px 4px;
             }
             .topnav a {
-                padding:  8px 10px;
+                padding: 8px 10px;
                 font-size: 15px;
             }
         }
@@ -88,7 +94,7 @@
         </div>
         <div class="topnav-links right">
             <a href="contact.html">contact</a>
-            <a class="active" href="about.html">about</a>
+            <a class="active" href="admin.html">admin</a>
         </div>
     </div>
 </body>
