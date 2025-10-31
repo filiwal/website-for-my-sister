@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaja's Tutoring Sessions - Admin</title>
+  <style>
+    html, body { background-color: skyblue; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; }
+    .topnav-title { width:100vw; display:block; text-align:center; font-size:2.5rem; font-weight:bold; color:#fff; background-color:#43aef5; margin:0; padding:20px 0 10px 0; user-select:none; }
+    .topnav { width:100vw; display:flex; align-items:center; justify-content:space-between; background-color:#43aef5; padding:0 32px; border-radius:0 0 30px 30px; box-shadow:0 2px 8px rgba(67,174,245,0.08); }
+    .topnav a { color:#155f91; background:#eaf6fd; border-radius:20px; text-align:center; padding:10px 20px; text-decoration:none; font-size:17px; margin:8px 0; box-shadow:0 1px 4px rgba(67,174,245,0.08); font-weight:500; }
+    .topnav a:hover { background-color:#b3e0fc; color:#053352; box-shadow:0 2px 8px rgba(67,174,245,0.15); }
+    .topnav a.active { background-color:#1e94e4; color:white; box-shadow:0 2px rgba(30,148,228,0.18); }
+    main { max-width:900px; margin:24px auto; padding:0 16px 48px 16px; box-sizing:border-box; }
+    .box { background:#5ab2ed; border:8px solid #155f91; border-radius:20px; width:60%; max-width:720px; min-width:300px; margin:18px auto; padding:20px; color:white; box-shadow:2px 2px 10px rgba(0,0,0,0.2); text-align:center; font-size:20px; }
+    .login-controls { display:flex; gap:10px; justify-content:center; align-items:center; margin-top:12px; flex-wrap:wrap; }
+    input[type="password"] { padding:10px; font-size:16px; border-radius:6px; border:1px solid #ccc; min-width:200px; box-sizing:border-box; }
+    button { padding:10px 14px; font-size:16px; border-radius:6px; background-color:#155f91; color:white; border:none; cursor:pointer; }
+    button:hover { background-color:#1d7dc4; }
+    #msg { margin-top:10px; color:#fff; min-height:1.2em; }
+    #admin-content { display:none; width:60%; max-width:720px; min-width:300px; margin:18px auto; text-align:left; box-sizing:border-box; }
+  </style>
+</head>
+<body>
+  <span class="topnav-title">Kaja's tutoring sessions</span>
+  <div class="topnav" role="navigation">
+    <div class="topnav-links">
+      <a href="home_page.html">Home</a>
+      <a href="prevous_consumers.html">previous consumers</a>
+    </div>
+    <div class="topnav-links right">
+      <a href="contact.html">contact</a>
+      <a class="active" href="admin.html">admin</a>
+    </div>
+  </div>
+
+  <main>
+    <div id="login-box" class="box">
+      <h2>Admin Login</h2>
+      <div class="login-controls">
+        <input id="passcode" type="password" placeholder="Enter passcode" aria-label="Passcode">
+        <button id="login-btn">Login</button>
+      </div>
+      <p id="msg"></p>
+    </div>
+
+    <div id="admin-content" class="box" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const passInput = document.getElementById('passcode');
+    const msg = document.getElementById('msg');
+    const loginBox = document.getElementById('login-box');
+    const adminContent = document.getElementById('admin-content');
+
+    async function login() {
+      msg.textContent = "Checking...";
+      const passcode = passInput.value.trim();
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ passcode })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          loginBox.style.display = 'none';
+          loadAdminContent();
+        } else {
+          msg.textContent = data.error || 'Incorrect password';
+          passInput.value = '';
+          passInput.focus();
+        }
+      } catch (err) {
+        msg.textContent = 'Server error';
+      }
+    }
+
+    async function loadAdminContent() {
+      try {
+        const res = await fetch('/admin/content');
+        const data = await res.json();
+        if (data.ok) {
+          adminContent.innerHTML = data.html;
+          adminContent.style.display = 'block';
+          adminContent.setAttribute('aria-hidden','false');
+        } else {
+          adminContent.innerHTML = '<p>Not authorized.</p>';
+          adminContent.style.display = 'block';
+        }
+      } catch (err) {
+        adminContent.innerHTML = '<p>Failed to load content.</p>';
+        adminContent.style.display = 'block';
+      }
+    }
+
+    // Logout function called from injected content
+    window.logout = async function(){
+      await fetch('/logout', { method:'POST' });
+      adminContent.style.display = 'none';
+      loginBox.style.display = 'block';
+      passInput.value = '';
+      msg.textContent = '';
+      passInput.focus();
+    }
+
+    document.getElementById('login-btn').addEventListener('click', login);
+    passInput.addEventListener('keydown', e => { if(e.key==='Enter') login(); });
+    passInput.focus();
+  </script>
+</body>
+</html>
