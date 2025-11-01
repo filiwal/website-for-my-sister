@@ -113,6 +113,18 @@
         .underline {
             text-decoration: underline;
         }
+        button {
+        padding: 10px 14px;
+        font-size: 16px;
+        border-radius: 6px;
+        background-color: #155f91;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }
+        button:hover {
+        background-color: #1d7dc4;
+        }
     </style>
 </head>
 <body>
@@ -133,13 +145,6 @@
         <h2>Welcome to Kaja's Tutoring Sessions</h2>
     </div>
     <div class="box">
-        <div class="box-content">
-            <img src="https://wallpapers.com/images/hd/tiny-pocket-troll-png-aff92-pep6mkfvnq148uts.png" 
-                alt="Kaja pic 1" width="350" height="300">
-            <p>Hello, I am Kaja and I will help you with your studies!</p>
-        </div>
-    </div>
-    <div class="box">
         <div>I offer subjects such as <span class="underline">GCSE Maths</span> aswell as <span class="underline">Secondary School Maths!</span></div>
         <div>My tutoring sessions are <span class="bold">affordable</span> and <span class="bold">effective!</span></div>
     </div>
@@ -147,5 +152,23 @@
         <div><span class="bold">What is my lesson format?</span></div>
         <div>I offer very simple and easy-to-understand online one-to-one tutoring with flexible schedule options.(evenings / weekends)</div>
 </div>
+<div class="box">
+    <div><span class="bold">Why choose me as your tutor?</span></div>
+    <div>I am <span class="underline">patient</span> and I give <span class="underline">clear explanations</span> to help you understand the material.</div>
+    <div>I also <span class="underline">focus on understanding and exam techniques</span>.</div>
+    <div>My goal is to help <span class="underline">you</span> succeed!</div>
+</div>
+<div class="box">
+    <div>With a rate of only <span class="bold">£15 per hour</span> you can learn from the comfort of your own home!</div>
+</div>
+<div class="box">
+    <div>If you wish to contact me today then press the button below!</div>
+    <button onclick="goToContact()">Contact Me</button>
+</div>
+  <script>
+    function goToContact() {
+      window.location.href = "contact.html";
+    }
+  </script>
 </body2>
 </html>
