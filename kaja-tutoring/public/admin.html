@@ -10,6 +10,7 @@
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
     }
+
     .topnav-title {
         width: 100vw;
         box-sizing: border-box;
@@ -24,6 +25,7 @@
         user-select: none;
         border-radius: 0;
     }
+
     .topnav {
         width: 100vw;
         box-sizing: border-box;
@@ -37,15 +39,16 @@
         border-radius: 0 0 30px 30px;
         box-shadow: 0 2px 8px rgba(67, 174, 245, 0.08);
     }
-    .topnav-link {
+
+    .topnav-links {
         display: flex;
         gap: 12px;
-        flex: 1;
-        justify-content: flex-start;
     }
+
     .topnav-links.right {
         justify-content: flex-end;
     }
+
     .topnav a {
         color: #155f91;
         background: #eaf6fd;
@@ -55,41 +58,47 @@
         text-decoration: none;
         font-size: 17px;
         margin: 8px 0;
-        transition: 
-            background 0.2s,
-            color 0.2s,
-            box-shadow 0.2s;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
         box-shadow: 0 1px 4px rgba(67, 174, 245, 0.08);
         border: none;
         outline: none;
         font-weight: 500;
     }
+
     .topnav a:hover {
         background-color: #b3e0fc;
         color: #053352;
         box-shadow: 0 2px 8px rgba(67, 174, 245, 0.15);
     }
+
     .topnav a.active {
         background-color: #1e94e4;
         color: white;
         box-shadow: 0 2px rgba(30, 148, 228, 0.18);
     }
-    @media (max-width: 600px) {
-        .topnav, .topnav-title {
-            font-size: 1.2rem;
-            padding: 10px 4px;
+
+    /* ✅ Responsive centering on narrow screens */
+    @media (max-width: 700px) {
+        .topnav {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 0;
         }
-        .topnav a {
-            padding: 8px 10px;
-            font-size: 15px;
+        .topnav-links {
+            justify-content: center;
+            flex-wrap: wrap;
         }
     }
+
     main {
       max-width: 900px;
       margin: 24px auto;
       padding: 0 16px 48px 16px;
       box-sizing: border-box;
     }
+
     .box {
       background: #5ab2ed;
       border: 8px solid #155f91;
@@ -104,6 +113,7 @@
       text-align: center;
       font-size: 20px;
     }
+
     .login-controls {
       display: flex;
       gap: 10px;
@@ -112,6 +122,7 @@
       margin-top: 12px;
       flex-wrap: wrap;
     }
+
     input[type="password"] {
       padding: 10px;
       font-size: 16px;
@@ -120,6 +131,7 @@
       min-width: 200px;
       box-sizing: border-box;
     }
+
     button {
       padding: 10px 14px;
       font-size: 16px;
@@ -129,14 +141,17 @@
       border: none;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #1d7dc4;
     }
+
     #msg {
       margin-top: 10px;
       color: #fff;
       min-height: 1.2em;
     }
+
     #admin-content {
       display: none;
       width: 60%;
@@ -160,6 +175,7 @@
       <a class="active" href="admin.html">admin</a>
     </div>
   </div>
+
   <main>
     <div id="login-box" class="box">
       <h2>Admin Login</h2>
@@ -169,13 +185,16 @@
       </div>
       <p id="msg"></p>
     </div>
+
     <div id="admin-content" class="box" aria-hidden="true"></div>
   </main>
+
   <script>
     const passInput = document.getElementById('passcode');
     const msg = document.getElementById('msg');
     const loginBox = document.getElementById('login-box');
     const adminContent = document.getElementById('admin-content');
+
     async function login() {
       msg.textContent = "Checking...";
       const passcode = passInput.value.trim();
@@ -198,6 +217,7 @@
         msg.textContent = 'Server error';
       }
     }
+
     async function loadAdminContent() {
       try {
         const res = await fetch('/admin/content');
@@ -215,6 +235,7 @@
         adminContent.style.display = 'block';
       }
     }
+
     window.logout = async function(){
       await fetch('/logout', { method:'POST' });
       adminContent.style.display = 'none';
@@ -223,6 +244,7 @@
       msg.textContent = '';
       passInput.focus();
     }
+
     document.getElementById('login-btn').addEventListener('click', login);
     passInput.addEventListener('keydown', e => { if(e.key==='Enter') login(); });
     passInput.focus();

@@ -1,174 +1,212 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Kaja's tutoring sessions</title>
-    <style>
-        html, body {
-            background-color: skyblue;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .topnav-title {
-            width: 100vw;
-            box-sizing: border-box;
-            display: block;
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #43aef5;
-            margin: 0;
-            padding: 20px 0 10px 0;
-            user-select: none;
-            border-radius: 0;
-        }
-        .topnav {
-            width: 100vw;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #43aef5;
-            padding:  0 32px;
-            position: relative;
-            border-top: none;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 2px 8px rgba(67, 174, 245, 0.08);
-        }
-        .topnav-link {
-            display: flex;
-            gap: 12px;
-            flex: 1;
-            justify-content: flex-start;
-        }
-        .topnav-links.right {
-            justify-content: flex-end;
-        }
-        .topnav a {
-            color: #155f91;
-            background: #eaf6fd;
-            border-radius: 20px;
-            text-align: center;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 17px;
-            margin: 8px 0;
-            transition: 
-                background 0.2s,
-                color 0.2s,
-                box-shadow 0.2s;
-            box-shadow: 0 1px 4px rgba(67, 174, 245, 0.08);
-            border: none;
-            outline: none;
-            font-weight: 500;
-        }
-        .topnav a:hover {
-            background-color: #b3e0fc;
-            color: #053352;
-            box-shadow: 0 2px 8px rgba(67, 174, 245, 0.15);
-        }
-        .topnav a.active {
-            background-color: #1e94e4;
-            color: white;
-            box-shadow: 0 2px rgba(30, 148, 228, 0.18);
-        }
-        @media (max-width: 600px) {
-            .topnav, .topnav-title {
-                font-size: 300px;
-                padding: 10px 4px;
-            }
-            .topnav a {
-                padding: 8px 10px;
-                font-size: 15px;
-            }
-        }
-        .box {
-            width: 50vw; 
-            height: auto; 
-            color: white;
-            background-color: #5ab2ed;
-            border: 8px solid #155f91; 
-            padding: 20px; 
-            margin: 20px auto; 
-            text-align: center; 
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
-            border-radius: 20px;
-            font-size: 25px;
-        }        
-        .box img {
-            border-radius: 10px;
-        }
+  <meta charset="UTF-8">
+  <title>Kaja's tutoring sessions</title>
+  <style>
+    html, body {
+      background-color: skyblue;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-        .box-content {
-            display: flex;
-            align-items: center;
-            gap: 20px; 
-            justify-content: center; 
-        }
-        .bold {
-            font-weight: bold;
-        }
-        .underline {
-            text-decoration: underline;
-        }
-        button {
-        padding: 10px 14px;
+    /* ===== Title Bar ===== */
+    .topnav-title {
+      width: 100vw;
+      box-sizing: border-box;
+      display: block;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #43aef5;
+      margin: 0;
+      padding: 20px 0 10px 0;
+      user-select: none;
+    }
+
+    /* ===== Navigation Bar ===== */
+    .topnav {
+      width: 100vw;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #43aef5;
+      padding: 0 32px;
+      position: relative;
+      border-top: none;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 2px 8px rgba(67, 174, 245, 0.08);
+      flex-wrap: wrap;
+      transition: all 0.3s ease;
+    }
+
+    .topnav-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .topnav-links.right {
+      justify-content: flex-end;
+    }
+
+    .topnav a {
+      color: #155f91;
+      background: #eaf6fd;
+      border-radius: 20px;
+      text-align: center;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 17px;
+      margin: 8px 0;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(67, 174, 245, 0.08);
+      font-weight: 500;
+    }
+
+    .topnav a:hover {
+      background-color: #b3e0fc;
+      color: #053352;
+      box-shadow: 0 2px 8px rgba(67, 174, 245, 0.15);
+    }
+
+    .topnav a.active {
+      background-color: #1e94e4;
+      color: white;
+      box-shadow: 0 2px rgba(30, 148, 228, 0.18);
+    }
+
+    /* ===== Responsive Behavior ===== */
+    @media (max-width: 750px) {
+      .topnav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0 20px 0;
+      }
+
+      .topnav-links,
+      .topnav-links.right {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .topnav a {
         font-size: 16px;
-        border-radius: 6px;
-        background-color: #155f91;
-        color: white;
-        border: none;
-        cursor: pointer;
-        }
-        button:hover {
-        background-color: #1d7dc4;
-        }
-    </style>
+        padding: 8px 16px;
+      }
+    }
+
+    /* ===== Content Boxes ===== */
+    .box {
+      width: 50vw;
+      color: white;
+      background-color: #5ab2ed;
+      border: 8px solid #155f91;
+      padding: 20px;
+      margin: 20px auto;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      font-size: 25px;
+    }
+
+    .box img {
+      border-radius: 10px;
+    }
+
+    .box-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    button {
+      padding: 10px 14px;
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: #155f91;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #1d7dc4;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        width: 80vw;
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <span class="topnav-title">Kaja's tutoring sessions</span>
-    <div class="topnav">
-        <div class="topnav-links">
-            <a class="active" href="home_page.html">Home</a>
-            <a href="prevous_consumers.html">prevous comsumers</a>
-        </div>
-        <div class="topnav-links right">
-            <a href="contact.html">contact</a>
-            <a href="admin.html">admin</a>
-        </div>
+
+  <span class="topnav-title">Kaja's tutoring sessions</span>
+
+  <div class="topnav">
+    <div class="topnav-links">
+      <a class="active" href="home_page.html">Home</a>
+      <a href="prevous_consumers.html">Previous consumers</a>
     </div>
-</body>
-<body2>
-    <div class="box">
-        <h2>Welcome to Kaja's Tutoring Sessions</h2>
+    <div class="topnav-links right">
+      <a href="contact.html">Contact</a>
+      <a href="admin.html">Admin</a>
     </div>
-    <div class="box">
-        <div>I offer subjects such as <span class="underline">GCSE Maths</span> aswell as <span class="underline">Secondary School Maths!</span></div>
-        <div>My tutoring sessions are <span class="bold">affordable</span> and <span class="bold">effective!</span></div>
-    </div>
-    <div class="box">
-        <div><span class="bold">What is my lesson format?</span></div>
-        <div>I offer very simple and easy-to-understand online one-to-one tutoring with flexible schedule options.(evenings / weekends)</div>
-</div>
-<div class="box">
+  </div>
+
+  <div class="box">
+    <h2>Welcome to Kaja's Tutoring Sessions</h2>
+  </div>
+
+  <div class="box">
+    <div>I offer subjects such as <span class="underline">GCSE Maths</span> as well as <span class="underline">Secondary School Maths!</span></div>
+    <div>My tutoring sessions are <span class="bold">affordable</span> and <span class="bold">effective!</span></div>
+  </div>
+
+  <div class="box">
+    <div><span class="bold">What is my lesson format?</span></div>
+    <div>I offer very simple and easy-to-understand online one-to-one tutoring with flexible schedule options (evenings/weekends).</div>
+  </div>
+
+  <div class="box">
     <div><span class="bold">Why choose me as your tutor?</span></div>
     <div>I am <span class="underline">patient</span> and I give <span class="underline">clear explanations</span> to help you understand the material.</div>
     <div>I also <span class="underline">focus on understanding and exam techniques</span>.</div>
     <div>My goal is to help <span class="underline">you</span> succeed!</div>
-</div>
-<div class="box">
+  </div>
+
+  <div class="box">
     <div>With a rate of only <span class="bold">£15 per hour</span> you can learn from the comfort of your own home!</div>
-</div>
-<div class="box">
+  </div>
+
+  <div class="box">
     <div>If you wish to contact me today then press the button below!</div>
     <button onclick="goToContact()">Contact Me</button>
-</div>
+  </div>
+
   <script>
     function goToContact() {
       window.location.href = "contact.html";
     }
   </script>
-</body2>
+
+</body>
 </html>
