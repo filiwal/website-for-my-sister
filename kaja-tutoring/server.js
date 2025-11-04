@@ -37,11 +37,9 @@ if (!ADMIN_PASS) {
 
 let ADMIN_HASH = null;
 
-// Middleware to parse JSON and form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Session setup
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "replace_with_long_random_secret",
@@ -51,15 +49,13 @@ app.use(
       httpOnly: true,
       sameSite: "lax",
       secure: false,
-      maxAge: 1000 * 60 * 60, // 1 hour
+      maxAge: 1000 * 60 * 60,
     },
   })
 );
 
-// Serve static files from /public
 app.use(express.static(path.join(__dirname, "public")));
 
-// Login endpoint
 app.post("/login", async (req, res) => {
   const { passcode } = req.body;
   if (!passcode) return res.status(400).json({ ok: false, error: "Missing passcode" });
@@ -73,7 +69,6 @@ app.post("/login", async (req, res) => {
   res.json({ ok: true });
 });
 
-// Logout endpoint
 app.post("/logout", (req, res) => {
   req.session.destroy(() => {
     res.clearCookie("connect.sid");
@@ -81,16 +76,21 @@ app.post("/logout", (req, res) => {
   });
 });
 
-// Protected admin content
 app.get("/admin/content", (req, res) => {
   if (!req.session.isAdmin) return res.status(403).json({ ok: false, error: "Not authorized" });
 
   res.json({
     ok: true,
     html: `
-      <h2>Welcome, Kaja 👋</h2>
+      <h2>Welcome,</h2>
       <p>This is the protected admin area.</p>
-      <form id="logout-form"><button type="button" onclick="logout()">Log out</button></form>
+      <p2>What are you doing here?</p2>
+      <div style="text-align: center; margin-top: 20px;">
+        <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/07/doakes-on-the-trail-1.jpg?q=49&fit=contain&w=750&h=422&dpr=2" style="width: 250px; height: auto; border-radius: 8px;">
+      </div>
+      <form id="logout-form" style="text-align: center; margin-top: 15px;">
+        <button type="button" onclick="logout()">Log out</button>
+      </form>
       <script>
         async function logout(){
           await fetch('/logout', { method: 'POST' });
